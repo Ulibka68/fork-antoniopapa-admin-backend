@@ -31,6 +31,10 @@ class Authenticate extends Middleware
      * @throw \Illuminate\Auth\AuthenticalntionException
      */
     public function handle($request, \Closure $next, ...$guards){
+        if ( $jwt = $request->cookies('jwt')) {
+            $request->headers->set('Authorization','Bearer ' . $jwt);
+        }
+
         $this->authenticate($request,$guards);
         return $next($request);
     }
