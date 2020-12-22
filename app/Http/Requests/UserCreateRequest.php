@@ -56,6 +56,8 @@ class UserCreateRequest extends FormRequest
     public function authorize()
     {
         return true;
+//        здесь в request также можно проверить полномочия пользователя
+        return \Gate::allows('edit','users');
     }
 
     /**

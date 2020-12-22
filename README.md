@@ -1,79 +1,183 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Курс React+Laravel+Next :grinning: 
+[Курс](https://www.udemy.com/course/react-laravel-influencer/learn/lecture/22536426?components=deal_badge%2Cdiscount_expiration%2Cgift_this_course%2Cprice_text%2Cpurchase%2Credeem_coupon%2Cslider_menu%2Ccacheable_deal_badge%2Ccacheable_discount_expiration%2Ccacheabl#questions)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+---
+## github:  
+https://github.com/antoniopapa  
+https://github.com/antoniopapa/admin-backend
+---
+## Установка
+// будет установлена 8 версия  
+composer create-project laravel/laravel laravel-next
 
-## About Laravel 
+// для 7 версии запусти команду ---------------
+composer create-project --prefer-dist laravel/laravel:^7.0 blog
+// узнать версию laravel:
+php artisan --version
+// 7.30.0
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+// поднимает локальный веб сервер
+php artisan serve
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 4. Routes
+// создание контроллера
+php artisan make:controller UserController
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 5. Migrations
+// внесли изменения в user table database/migrations/2014_10_12_000000_create_users_table.php  
+// мы должны войти внутрь контейнера  
+docker ps // какие контейнеры сейчас выполняются RUN  
+// в самой правой колонке указаны имена контейнеров, нам нужен admin_api  
+<span style="color:blue;font-weight:bold">docker exec -it admin_api sh</span>
 
-## Learning Laravel
+// находясь внутри контейнера запускай команду  
+php artisan migrate
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+php artisan make:seeder UserSeeder  
+// создан database/seeds/UserSeeder.php
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+// seeder вызывает factory database/factories/UserFactory.php  
+php artisan db:seed
 
-## Laravel Sponsors
+### 6. Rest 
+php artisan route:list
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### 7. Custom Requests
+//Если не указать first_name при создании - то возникнет ошибка.
+//Нужен custom validation  
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+php artisan make:request UserCreateRequest  
+//app/Http/Requests/UserCreateRequest.php
 
-## Contributing
+---
+В заголовках запроса не забудь поставить Accept:application/json иначе ошибку будет не видно
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+php artisan make:request UserUpdateRequest
 
-## Code of Conduct
+### 8. Pagination
+This package generates helper files that enable your IDE to provide accurate autocompletion. Generation is done based on the files in your project, so they are always up-to-date.  
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+https://github.com/barryvdh/laravel-ide-helper  
 
-## Security Vulnerabilities
+<span style="color:blue;font-weight:bold">composer require --dev barryvdh/laravel-ide-helper</span>  
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+php artisan ide:generate
 
-## License
+php artisan ide:models
+// app/User.php добавлены комментарии
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+### 9. Laravel Passport
+login  
+https://laravel.com/docs/7.x/passport
+
+composer require laravel/passport "~9.0"
+
+php artisan migrate
+
+php artisan passport:install
+
+### 10. Login
+
+php artisan make:controller AuthController
+
+### 11. Middlewares
+Для авторизации и получения, например списке пользователей надо передать в postamn Header:  
+
+Authorizaqtion : Bearer пробел + токен полученный при логин
+
+### 12. Register
+валидация для регистрации
+php artisan make:request RegisterRequest
+
+### 13. Profile
+Добавлены роуты по обновлению профиля
+
+### 14. Roles
+php artisan make:request UpdatePasswordRequest  
+php artisan make:migration create_roles_table  
+php artisan migrate   
+php artisan make:model Role     
+php artisan ide:models        
+
+### 15. Foreign Keys
+php artisan make:migration add_role_id_to_users
+
+// удаляет все данные из таблиц и создает их заново
+php artisan migrate:fresh  
+php artisan make:seeder RoleSeeder   
+php artisan db:seed    
+
+### 16. Api Resources
+    при создании пользователя надо включить role_id
+    при выводе user->role получаются два role_id
+php artisan make:resource UserResource
+
+### 17. Product
+php artisan make:migration create_products_table  
+php artisan migrate  
+php artisan make:model Product  
+php artisan make:controller ProductController  
+php artisan make:factory ProductFactory  
+php artisan make:seeder ProductSeeder  
+
+// чтобы запустить сидер только на новый класс  
+php artisan db:seed --class=ProductSeeder  
+
+
+### 18. Product Routes
+// ресурсы нужны для форматирования вывода
+// $products = Product::paginate();
+//   return ProductResource::collection($products);
+php artisan make:resource ProductResource  
+php artisan ide:models
+
+php artisan make:controller ImageController
+
+### 21. Orders
+
+### 22. Order Routes
+
+### 23. Order Total
+
+### 29. Gates
+
+### 31. Chart  - Dashboard
+php artisan make:controller Dashboard
+
+### 32. Login with Cookies
+
+## WSL
+wsl -l
+
+Сжать диск docker  
+Optimize-VHD -Path Y:\dockerData\ext4.vhdx -Mode Full
+
+______________________________
+wslconfig /list
+
+https://dev.to/kimcuonthenet/move-docker-desktop-data-distro-out-of-system-drive-4cg2
+
+%LOCALAPPDATA%/Docker/wsl;
+
+wsl --shutdown  
+wsl --export docker-desktop-data E:\docker\docker-desktop-data.tar  
+wsl --unregister docker-desktop-data  
+wsl --import docker-desktop-data E:\docker\data E:\docker\docker-desktop-data.tar --version 2  
+
+
+## Docker
+// Сборка образа  
+docker-compose up
+
+// выполняемые контейнеры  
+docker ps
+
+// войти внутрь контейнера  
+docker exec -it admin_api sh
+
+// войти внутрь контейнера  
+// в самой правой колонке указаны имена контейнеров, нам нужен admin_api  
+<span style="color:blue;font-weight:bold">docker exec -it admin_api sh</span>
+
+[DD]: https://www.udemy.com/course/react-laravel-influencer/learn/lecture/22536426?components=deal_badge%2Cdiscount_expiration%2Cgift_this_course%2Cprice_text%2Cpurchase%2Credeem_coupon%2Cslider_menu%2Ccacheable_deal_badge%2Ccacheable_discount_expiration%2Ccacheabl#questions

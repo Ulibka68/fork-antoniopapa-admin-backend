@@ -73,6 +73,21 @@ class ProductController extends Controller
         return response($product, Response::HTTP_CREATED);
     }
 
+    public function store2(Request $request)
+    {
+        $file = $request->file('image');
+        $name = Str::random(10);
+        $url = \Storage::putFileAs('images',$file,$name . '.' . $file->extension());
+
+        $product = Product::create([
+            'title' => $request->input('description'),
+            'image' => env('APP_URL') . '/' . $url,
+            'price' => $request->input('price'),
+        ]);
+
+        return response($product, Response::HTTP_CREATED);
+    }
+
     /**
      * @OA\Put(
      *   path="/products/{id}",
@@ -102,6 +117,7 @@ class ProductController extends Controller
 
         return response($product, Response::HTTP_ACCEPTED);
     }
+
 
     /**
      * @OA\Delete(path="/products/{id}",
