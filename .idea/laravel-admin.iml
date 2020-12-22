@@ -135,6 +135,12 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zircote/swagger-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/scrivo/highlight.php" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dictionaries" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/framework/cache/data/1a" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/framework/cache/data/02" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/framework/cache/data/16" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/framework/cache/data/30" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
