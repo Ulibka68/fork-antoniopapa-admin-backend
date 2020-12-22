@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
@@ -17,5 +18,20 @@ class Authenticate extends Middleware
 //        if (! $request->expectsJson()) {
 //            return route('login');
 //        }
+    }
+
+    /**
+     *  Handle an incominh request
+     *
+     * @param \\Illuminate\HTTP\Request $request
+     * @param  \Closure @next
+     * @param string[] ...$guards
+     * @return mixed
+     *
+     * @throw \Illuminate\Auth\AuthenticalntionException
+     */
+    public function handle($request, \Closure $next, ...$guards){
+        $this->authenticate($request,$guards);
+        return $next($request);
     }
 }
