@@ -29,6 +29,12 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    'supports_credentials' => true,
 
 ];
+
+//https://github.com/fruitcake/laravel-cors
+//supports_credentials	Sets the Access-Control-Allow-Credentials header.
+Authorization headers / Credentials
+//If your Request includes an Authorization header or uses Credentials mode, set the supports_credentials value in the config to true. This will set the Access-Control-Allow-Credentials Header to true.
+//https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials
